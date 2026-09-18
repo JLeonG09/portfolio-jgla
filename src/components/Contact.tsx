@@ -15,8 +15,7 @@ export function Contact() {
           </h2>
           <p className="mt-3 max-w-xl text-muted">
             ¿Tienes una vacante junior de backend o un proyecto? Escribime por
-            LinkedIn o GitHub
-            {email ? ", o por correo" : ""}.
+            correo, LinkedIn o GitHub.
           </p>
         </Reveal>
 

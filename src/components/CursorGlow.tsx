@@ -2,25 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 
-type Particle = {
-  id: number;
-  x: number;
-  y: number;
-};
-
 /**
- * Luz / estela que sigue el cursor (solo desktop + mouse).
- * Respeta prefers-reduced-motion y no se activa en touch.
+ * Halo muy difuminado que sigue el cursor (solo desktop + mouse).
+ * Sin estela de partículas — solo luz suave.
  */
 export function CursorGlow() {
   const glowRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
-  const target = useRef({ x: -999, y: -999 });
-  const current = useRef({ x: -999, y: -999 });
-  const [particles, setParticles] = useState<Particle[]>([]);
+  const target = useRef({ x: 0, y: 0 });
+  const current = useRef({ x: 0, y: 0 });
   const [enabled, setEnabled] = useState(false);
-  const idRef = useRef(0);
-  const lastSpawn = useRef(0);
 
   useEffect(() => {
     const fine = window.matchMedia("(pointer: fine)").matches;
@@ -28,24 +19,18 @@ export function CursorGlow() {
     if (!fine || reduce) return;
 
     setEnabled(true);
+    target.current = { x: window.innerWidth / 2, y: window.innerHeight / 3 };
+    current.current = { ...target.current };
 
     const onMove = (e: PointerEvent) => {
       if (e.pointerType !== "mouse") return;
       target.current = { x: e.clientX, y: e.clientY };
-
-      const now = performance.now();
-      if (now - lastSpawn.current > 70) {
-        lastSpawn.current = now;
-        const id = ++idRef.current;
-        setParticles((prev) => [...prev, { id, x: e.clientX, y: e.clientY }].slice(-8));
-        window.setTimeout(() => {
-          setParticles((prev) => prev.filter((p) => p.id !== id));
-        }, 380);
-      }
+      const glow = glowRef.current;
+      if (glow) glow.style.opacity = "1";
     };
 
     const tick = () => {
-      const ease = 0.16;
+      const ease = 0.08;
       current.current.x += (target.current.x - current.current.x) * ease;
       current.current.y += (target.current.y - current.current.y) * ease;
 
@@ -75,19 +60,9 @@ export function CursorGlow() {
     >
       <div
         ref={glowRef}
-        className="cursor-glow absolute left-0 top-0 h-40 w-40 will-change-transform"
+        className="cursor-glow absolute left-0 top-0 h-[28rem] w-[28rem] will-change-transform"
+        style={{ opacity: 0 }}
       />
-      {particles.map((p) => (
-        <span
-          key={p.id}
-          className="cursor-trail absolute block h-1 w-1 rounded-full"
-          style={{
-            left: p.x,
-            top: p.y,
-            transform: "translate(-50%, -50%)",
-          }}
-        />
-      ))}
     </div>
   );
 }

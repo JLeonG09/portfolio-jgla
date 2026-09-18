@@ -88,17 +88,6 @@ button:focus-visible {
   }
 }
 
-@keyframes trail-fade {
-  from {
-    opacity: 0.35;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.35);
-  }
-}
-
 /* SSR: visible. Tras armar JS: oculto hasta intersectar */
 .reveal {
   opacity: 1;
@@ -150,19 +139,14 @@ button:focus-visible {
   border-radius: 9999px;
   background: radial-gradient(
     circle,
-    rgba(45, 212, 191, 0.1) 0%,
-    rgba(45, 212, 191, 0.04) 40%,
-    transparent 68%
+    rgba(45, 212, 191, 0.14) 0%,
+    rgba(45, 212, 191, 0.06) 28%,
+    rgba(192, 132, 252, 0.03) 48%,
+    transparent 70%
   );
-  filter: blur(8px);
+  filter: blur(48px);
   mix-blend-mode: screen;
-  opacity: 0.7;
-}
-
-.cursor-trail {
-  background: rgba(45, 212, 191, 0.55);
-  box-shadow: 0 0 4px rgba(45, 212, 191, 0.25);
-  animation: trail-fade 0.38s ease-out forwards;
+  transition: opacity 0.4s ease;
   pointer-events: none;
 }
 
@@ -176,16 +160,14 @@ button:focus-visible {
   .reveal.reveal-visible,
   .hero-enter,
   .glow-orb,
-  .icon-float,
-  .cursor-trail {
+  .icon-float {
     animation: none !important;
     transition: none !important;
     opacity: 1 !important;
     transform: none !important;
   }
 
-  .cursor-glow,
-  .cursor-trail {
+  .cursor-glow {
     display: none !important;
   }
 }

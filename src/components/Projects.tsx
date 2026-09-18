@@ -114,8 +114,8 @@ export function Projects() {
               Proyectos
             </h2>
             <p className="mt-3 text-muted">
-              Ordenados por peso: producto real y hackathons primero; challenges
-              ONE como respaldo del track Alura.
+              Lo que he construido hasta ahora: un sistema para un taller real,
+              dos hackathons y los challenges del track ONE.
             </p>
           </div>
         </Reveal>

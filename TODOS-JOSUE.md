@@ -14,8 +14,10 @@
 ### Imprescindible para publicar
 - [x] **Email público** → `josueleon.dev.js@gmail.com`
 - [ ] **CV PDF** → `public/cv-josue-leon.pdf`
-- [ ] **Push del repo** a GitHub (este portafolio)
-- [ ] **Deploy Vercel** + decidir dominio (`NEXT_PUBLIC_SITE_URL` en Vercel)
+- [x] **Push del repo** → https://github.com/JLeonG09/portfolio-jgla
+- [x] **Deploy Vercel** → https://portfolio-jgla.vercel.app  
+  - [ ] Conectar GitHub en Vercel (Settings → Git) para auto-deploy en cada push  
+  - [ ] (Opcional) dominio propio + `NEXT_PUBLIC_SITE_URL`
 
 ### Mejora visual / impacto
 - [ ] **Capturas** Voltios, EnergiAI, LEBION → carpeta sugerida `public/projects/`
