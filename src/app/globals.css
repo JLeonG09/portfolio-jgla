@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #f2f4f7;
+  --muted: #9ca3af;
+  --card: #0a0a0a;
+  --card-border: #222222;
+  --accent: #2dd4bf;
+  --accent-soft: rgba(45, 212, 191, 0.14);
+  --accent-2: #c084fc;
+  --danger: #f87171;
+  --surface-glow: radial-gradient(
+    ellipse 70% 45% at 50% -15%,
+    rgba(45, 212, 191, 0.16),
+    transparent 55%
+  );
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-2: var(--accent-2);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-outfit);
+  --font-display: var(--font-sora);
+  --font-mono: var(--font-plex);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  background-image: var(--surface-glow);
+  background-attachment: fixed;
+}
+
+::selection {
+  background: rgba(45, 212, 191, 0.35);
+  color: #fff;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes trail-fade {
+  from {
+    opacity: 0.35;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.35);
+  }
+}
+
+/* SSR: visible. Tras armar JS: oculto hasta intersectar */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal.reveal-armed:not(.reveal-visible) {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.reveal.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-enter {
+  animation: fade-up 0.7s ease both;
+}
+
+.hero-enter-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.hero-enter-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.hero-enter-delay-3 {
+  animation-delay: 0.32s;
+}
+
+.hero-enter-delay-4 {
+  animation-delay: 0.44s;
+}
+
+.glow-orb {
+  animation: soft-pulse 7s ease-in-out infinite;
+}
+
+.icon-float {
+  animation: float-y 4.5s ease-in-out infinite;
+}
+
+.cursor-glow {
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle,
+    rgba(45, 212, 191, 0.1) 0%,
+    rgba(45, 212, 191, 0.04) 40%,
+    transparent 68%
+  );
+  filter: blur(8px);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+
+.cursor-trail {
+  background: rgba(45, 212, 191, 0.55);
+  box-shadow: 0 0 4px rgba(45, 212, 191, 0.25);
+  animation: trail-fade 0.38s ease-out forwards;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .reveal.reveal-armed:not(.reveal-visible),
+  .reveal.reveal-visible,
+  .hero-enter,
+  .glow-orb,
+  .icon-float,
+  .cursor-trail {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .cursor-glow,
+  .cursor-trail {
+    display: none !important;
+  }
+}
