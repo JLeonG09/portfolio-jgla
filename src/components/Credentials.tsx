@@ -21,8 +21,8 @@ export function Credentials() {
                 Credenciales
               </h2>
               <p className="mt-3 max-w-xl text-muted">
-                Programas, formaciones prioritarias y challenges ONE (Tier S). No
-                se listan las 57 certificaciones de Alura.
+                Programas, formaciones prioritarias y challenges ONE con mayor
+                peso para roles de backend.
               </p>
             </div>
             <a
