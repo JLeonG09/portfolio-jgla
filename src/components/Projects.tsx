@@ -13,6 +13,7 @@ import {
   type Project,
   type ProjectKind,
 } from "@/data/portfolio";
+import { ProjectCover } from "@/components/ProjectCover";
 import { Reveal } from "@/components/Reveal";
 
 const kindIcons: Record<ProjectKind, typeof Wrench> = {
@@ -32,7 +33,15 @@ function ProjectCard({
 
   return (
     <Reveal delayMs={delayMs} className="h-full">
-      <article className="group flex h-full flex-col rounded-2xl border border-card-border bg-card/90 p-5 transition duration-300 hover:-translate-y-1 hover:border-accent/45 hover:shadow-[0_12px_40px_-20px_rgba(45,212,191,0.45)]">
+      <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-card-border bg-card/90 p-5 transition duration-300 hover:-translate-y-1 hover:border-accent/45 hover:shadow-[0_12px_40px_-20px_rgba(45,212,191,0.45)]">
+        {project.cover ? (
+          <div className="-mx-5 -mt-5 mb-4">
+            <ProjectCover
+              src={project.cover}
+              alt={`Captura de ${project.name}`}
+            />
+          </div>
+        ) : null}
         <div className="flex flex-wrap items-center gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-2.5 py-0.5 text-xs font-medium text-accent">
             <KindIcon className="h-3 w-3" aria-hidden />
