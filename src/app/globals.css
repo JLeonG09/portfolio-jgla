@@ -51,6 +51,8 @@ body {
 
 .project-cover-dialog {
   margin: auto;
+  max-width: min(96vw, 1120px);
+  max-height: 92vh;
   padding: 0;
 }
 

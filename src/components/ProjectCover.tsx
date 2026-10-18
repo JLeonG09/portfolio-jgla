@@ -2,7 +2,7 @@
 
 import { Expand, X } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useId, useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 
 type ProjectCoverProps = {
   src: string;
@@ -14,21 +14,21 @@ export function ProjectCover({ src, alt }: ProjectCoverProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const titleId = useId();
 
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-    if (open) {
-      if (!dialog.open) dialog.showModal();
-      return;
-    }
-    if (dialog.open) dialog.close();
-  }, [open]);
+  function openCover() {
+    dialogRef.current?.showModal();
+    setOpen(true);
+  }
+
+  function closeCover() {
+    dialogRef.current?.close();
+    setOpen(false);
+  }
 
   return (
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={openCover}
         className="relative block w-full cursor-zoom-in overflow-hidden bg-black text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
       >
         <Image
@@ -52,33 +52,35 @@ export function ProjectCover({ src, alt }: ProjectCoverProps) {
         aria-labelledby={titleId}
         onClose={() => setOpen(false)}
         onClick={(event) => {
-          if (event.target === dialogRef.current) setOpen(false);
+          if (event.target === dialogRef.current) closeCover();
         }}
         className="project-cover-dialog w-[min(96vw,1120px)] max-w-none border-0 bg-transparent p-0 text-foreground"
       >
-        <div className="flex items-center justify-between gap-3 rounded-t-xl border border-b-0 border-card-border bg-card px-3 py-2">
-          <p id={titleId} className="truncate text-sm font-medium">
-            {alt}
-          </p>
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            className="inline-flex h-8 w-8 items-center justify-center rounded-md text-muted transition hover:bg-accent-soft hover:text-accent"
-            aria-label="Cerrar captura"
-          >
-            <X className="h-4 w-4" aria-hidden />
-          </button>
-        </div>
-        <div className="overflow-hidden rounded-b-xl border border-card-border bg-black">
-          <Image
-            src={src}
-            alt={alt}
-            width={1600}
-            height={900}
-            className="h-auto w-full"
-            sizes="(min-width: 1120px) 1120px, 96vw"
-            priority={open}
-          />
+        <div className="flex max-h-[92vh] flex-col">
+          <div className="flex shrink-0 items-center justify-between gap-3 rounded-t-xl border border-b-0 border-card-border bg-card px-3 py-2">
+            <p id={titleId} className="truncate text-sm font-medium">
+              {alt}
+            </p>
+            <button
+              type="button"
+              onClick={closeCover}
+              className="inline-flex h-8 w-8 items-center justify-center rounded-md text-muted transition hover:bg-accent-soft hover:text-accent"
+              aria-label="Cerrar captura"
+            >
+              <X className="h-4 w-4" aria-hidden />
+            </button>
+          </div>
+          <div className="overflow-auto rounded-b-xl border border-card-border bg-black">
+            <Image
+              src={src}
+              alt={alt}
+              width={1600}
+              height={900}
+              className="h-auto max-h-[calc(92vh-3rem)] w-full object-contain"
+              sizes="(min-width: 1120px) 1120px, 96vw"
+              priority={open}
+            />
+          </div>
         </div>
       </dialog>
     </>
