@@ -42,6 +42,8 @@ export const metadata: Metadata = {
     "Costa Rica",
     "Oracle Next Education",
     "OCI",
+    "Nexora",
+    "Stellar",
     "Junior Developer",
   ],
   openGraph: {

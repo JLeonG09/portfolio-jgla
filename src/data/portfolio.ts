@@ -5,9 +5,9 @@ export type CertificateKind = "programa" | "formacion" | "challenge" | "certific
 export const site = {
   name: "Josué León Ávalos",
   fullName: "Josué León Ávalos",
-  headline: "Backend Java · Spring Boot · Productos reales & ONE G9",
+  headline: "Backend Java · Spring Boot · Productos reales & hackathons",
   shortBio:
-    "Construyo APIs con Spring Boot y JPA. Combino un sistema real de taller, hackathons (EnergiAI, LEBION) y el track Oracle Next Education (Alura).",
+    "Construyo APIs con Spring Boot y JPA. Combino un sistema real de taller, hackathons (Nexora, EnergiAI, LEBION) y el track Oracle Next Education (Alura).",
   location: "San José, Costa Rica",
   availability: "Abierto a remoto, híbrido o presencial · Empleo y freelance",
   languages: ["Español (nativo)", "Inglés (B1)"],
@@ -22,7 +22,7 @@ export const site = {
 
 export const about = {
   paragraph:
-    "Josué León es un desarrollador backend enfocado en Java y Spring Boot. Completó el track ONE Tech Foundation G9 – Back End y ONE Tech Advanced, con formaciones en orientación a objetos, APIs REST, Spring Data JPA, SQL y ruta hacia OCI Foundations Associate. Combina challenges ONE con proyectos de hackathon y un sistema real de taller. Busca roles junior de backend donde pueda aportar en APIs, buenas prácticas y aprendizaje continuo.",
+    "Josué León es un desarrollador backend enfocado en Java y Spring Boot. Completó el track ONE Tech Foundation G9 – Back End y ONE Tech Advanced, con formaciones en orientación a objetos, APIs REST, Spring Data JPA, SQL y ruta hacia OCI Foundations Associate. Combina un sistema real de taller, hackathons (Nexora en Stellar, EnergiAI, LEBION) y challenges ONE. Busca roles junior de backend donde pueda aportar en APIs, buenas prácticas y aprendizaje continuo.",
   stack: [
     "Java",
     "Spring Boot 3",
@@ -37,6 +37,7 @@ export const about = {
     "HTML/CSS/JS",
     "React (básico)",
     "OCI Foundations",
+    "Stellar / Soroban (testnet)",
     "Spring AI / OpenAI (básico)",
   ],
 } as const;
@@ -64,7 +65,7 @@ export const projects: Project[] = [
     summary:
       "Sistema de gestión para el taller automotriz Voltios y Ruedas: clientes, reservas, órdenes de trabajo e inventario.",
     highlights: [
-      "Backend en Java 21 / Spring Boot con JWT, roles (ADMIN, JEFE_TALLER, MECANICO, CLIENTE), Flyway y PostgreSQL.",
+      "Backend en Java 21 / Spring Boot con JWT, roles de staff y cliente, Flyway y PostgreSQL.",
       "Proyecto full-stack real (aprendizaje + cliente familiar) con Docker Compose, Redis, notificaciones SMTP y suite de tests.",
       "Frontend en React 19 + Vite + TypeScript con paneles distintos para staff y cliente.",
     ],
@@ -79,6 +80,32 @@ export const projects: Project[] = [
       "TypeScript",
     ],
     repo: "https://github.com/JLeonG09/Voltios-Y-Ruedas",
+    demo: null,
+    featured: true,
+  },
+  {
+    id: "nexora",
+    name: "Nexora",
+    kind: "hackathon",
+    role: "Backend · Seguridad",
+    summary:
+      "Panel para pagar USDC en Stellar testnet con un agente de IA que solo propone: el backend valida y un firmante aparte envía la transacción.",
+    highlights: [
+      "API Spring Boot (Java 21) con ocho reglas de validación, mandato, auditoría y alertas si sale un pago que el chat no hizo.",
+      "Firmante separado (Node), topes on-chain y rotación de llave al reportar movimiento no reconocido.",
+      "Hackathon Stellar Passport «Find Your Way»: Docker Compose, CI y panel React (Vite) con Privy.",
+    ],
+    skills: [
+      "Java 21",
+      "Spring Boot",
+      "PostgreSQL",
+      "Docker",
+      "Stellar",
+      "Privy",
+      "React",
+      "TypeScript",
+    ],
+    repo: "https://github.com/JLeonG09/Nexora",
     demo: null,
     featured: true,
   },

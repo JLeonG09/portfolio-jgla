@@ -115,7 +115,8 @@ export function Projects() {
             </h2>
             <p className="mt-3 text-muted">
               Lo que he construido hasta ahora: un sistema para un taller real,
-              dos hackathons y los challenges del track ONE.
+              hackathons (Nexora, EnergiAI, LEBION) y los challenges del track
+              ONE.
             </p>
           </div>
         </Reveal>
