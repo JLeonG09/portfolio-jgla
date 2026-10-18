@@ -53,6 +53,8 @@ export type Project = {
   repo: string | null;
   demo: string | null;
   featured: boolean;
+  /** Captura hero en `public/projects/` (1600×900). */
+  cover?: string;
 };
 
 /** Orden por seriedad / peso para reclutadores */
@@ -82,6 +84,7 @@ export const projects: Project[] = [
     repo: "https://github.com/JLeonG09/Voltios-Y-Ruedas",
     demo: null,
     featured: true,
+    cover: "/projects/voltios.png",
   },
   {
     id: "nexora",
@@ -108,6 +111,7 @@ export const projects: Project[] = [
     repo: "https://github.com/JLeonG09/Nexora",
     demo: null,
     featured: true,
+    cover: "/projects/nexora.png",
   },
   {
     id: "energiai",
@@ -133,6 +137,7 @@ export const projects: Project[] = [
     repo: "https://github.com/No-Country-simulation/G9-LATAM-TEAM-06",
     demo: "https://www.youtube.com/watch?v=f7DShxUZmTI",
     featured: true,
+    cover: "/projects/energiai.png",
   },
   {
     id: "lebion",
@@ -156,6 +161,7 @@ export const projects: Project[] = [
     repo: "https://github.com/JLeonG09/LEBION",
     demo: null,
     featured: true,
+    cover: "/projects/lebion.png",
   },
   {
     id: "foro-hub",
